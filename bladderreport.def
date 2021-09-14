@@ -1,0 +1,81 @@
+Bootstrap: docker
+From: centos:centos7.6.1810
+
+
+%environment
+    export PATH=$PATH:/opt/software/conda/bin/
+    source /opt/software/conda/bin/activate /opt/software/uroscan_env
+
+
+%files
+    # qualimap_v2.2.1 /opt/software/
+    # picard.jar /opt/software/
+    bladderreport /opt/software/
+    # salmon /opt/software/
+
+%post
+    yum -y install epel-release wget which nano curl zlib-devel
+    yum -y groupinstall "Development Tools"
+    yum -y install tbb ## https://www.metagenomics.wiki/tools/bowtie2/install/libtbb-so-2
+    ## yum -y install libncurses5 ##
+    yum -y install lynx
+
+    mkdir -p /opt/software
+
+    cd /opt/software
+    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    sh ./Miniconda3-latest-Linux-x86_64.sh -p /opt/software/conda -b
+
+    /opt/software/conda/bin/conda config --add channels defaults
+    /opt/software/conda/bin/conda config --add channels conda-forge
+    /opt/software/conda/bin/conda config --add channels bioconda
+    /opt/software/conda/bin/conda config --add channels dranew
+    /opt/software/conda/bin/conda install -y -c conda-forge mamba
+
+    /opt/software/conda/bin/mamba create -p /opt/software/uroscan_env -y "python>=3.6" \
+      rsem=1.3.0 \
+      star=2.5.3a \
+      sambamba=0.6.8 \
+      r-base=3.4.1 \
+      salmon=0.13.1 \
+      qualimap \
+      bowtie2 \
+      rseqc \
+      picard \
+      fastqc \
+      multiqc \
+      samtools \
+      fastq-screen \
+      bcl2fastq=2.19.0 \
+      r-devtools \
+      r-knitr=1.16 \
+      vladsaveliev::r-kableextra=0.9.0 \
+      r-jsonlite=1.4 \
+      r-dplyr=0.7.4 \
+      r-reshape=0.8.6 \
+      r-ggplot2=2.2.0 \
+      r-cowplot=0.9.1 \
+      r-ranger
+
+# r-ranger=0.7.0 \
+  #bowtie2=2.3.3.1 \
+  #salmon=0.13.1 \
+      #
+
+## featureCounts NOT included
+
+
+
+    source /opt/software/conda/bin/activate /opt/software/uroscan_env
+    cd /opt/software
+
+%runscript
+    echo "Welcome to the Uroscan container"
+    #exec virsorter "$@"
+    exec R --slave -e "sessionInfo()"
+    exec R --slave -e "installed.packages()"
+    exec STAR --version
+    # exec salmon --version
+    # exec bowtie2 --version
+    exec rsem-calculate-expression --version
+    exec geneBody_coverage.py --version
