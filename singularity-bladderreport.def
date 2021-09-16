@@ -30,18 +30,16 @@ From: centos:centos7.6.1810
     /opt/software/conda/bin/conda install -y -c conda-forge mamba
 
     /opt/software/conda/bin/mamba create -p /opt/software/uroscan_env -y "python>=3.6" \
-      r-base=3.4.1 \
+      r-base \
       r-ranger=0.7.0 \
       r-devtools \
       r-knitr \
       r-kableextra \
-      r-jsonlite=1.4 \
-      r-dplyr=0.7.4 \
-      r-reshape=0.8.6 \
-      r-ggplot2=2.2.0 \
-      r-cowplot=0.9.1
-
-      # vladsaveliev::r-kableextra=0.9.0 \
+      r-jsonlite \
+      r-dplyr \
+      r-reshape \
+      r-ggplot2 \
+      r-cowplot
 
     source /opt/software/conda/bin/activate /opt/software/uroscan_env
     cd /opt/software
