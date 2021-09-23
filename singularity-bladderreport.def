@@ -1,21 +1,30 @@
-Bootstrap: docker
-From: centos:centos7.6.1810
+Bootstrap:docker
+From:nfcore/base
 
 
 %environment
     export PATH=$PATH:/opt/software/conda/bin/
-    source /opt/software/conda/bin/activate /opt/software/uroscan_env
+    source /opt/software/conda/bin/activate /opt/software/bladderreport_env
+    export LC_ALL=en_US.UTF-8 # export LC_ALL=C.UTF-8 # Sets locale to UTF-8
+    export LANG=en_US.UTF-8 # export LANG=C.UTF-8 # Sets locale to UTF-8
 
 
 %files
     ## bladderreport /opt/software/
 
 %post
-    yum -y install epel-release wget which nano curl zlib-devel
-    yum -y groupinstall "Development Tools"
-    yum -y install perl
-    yum -y install lynx
-    yum -y install chromium
+    # yum -y install epel-release wget which nano curl zlib-devel
+    # yum -y groupinstall "Development Tools"
+
+    rm -rf /var/lib/apt/lists/*
+    apt-get -y clean
+    apt-get -y update
+
+    apt-get -y install perl lynx chromium
+    apt-get -y install lynx
+    apt-get -y install chromium
+
+    apt-get -y install apt-utils curl libz-dev build-essential gettext cmake libxml2-dev make libcurl4-openssl-dev libssl-dev libbz2-dev libboost-dev libtbb2 sudo tree
 
     mkdir -p /opt/software
 
@@ -39,13 +48,18 @@ From: centos:centos7.6.1810
       r-dplyr \
       r-reshape \
       r-ggplot2 \
-      r-cowplot=1.1.0
+      r-cowplot=1.1.0 \
+      r-gridextra
 
-    source /opt/software/conda/bin/activate /opt/software/uroscan_env
+    # source /opt/software/conda/bin/activate /opt/software/ctg-rnaseq_env
     cd /opt/software
 
+    apt-get -y clean
+    rm -rf /var/lib/apt/lists/*
+
+
 %runscript
-    echo "Welcome to the Uroscan container"
+    echo "Welcome to the bladderreport container"
     #exec virsorter "$@"
     exec R --slave -e "sessionInfo()"
     exec R --slave -e "installed.packages()"
