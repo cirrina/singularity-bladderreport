@@ -27,7 +27,7 @@ From:nfcore/base
     #apt-get -y install lynx
     #apt-get -y install chromium
 
-    apt-get -y install locales apt-utils curl libz-dev build-essential gettext cmake libxml2-dev make libcurl libcurl4-openssl-dev libssl-dev libbz2-dev libboost-dev libtbb2 sudo tree
+    apt-get -y install locales apt-utils curl libz-dev build-essential gettext cmake libxml2-dev make libcurl4-openssl-dev libssl-dev libbz2-dev libboost-dev libtbb2 sudo tree
 
     # mkdir -p /opt/software
     # cd /opt/software
