@@ -46,7 +46,7 @@ From:nfcore/base
 
 
     # /opt/software/conda/bin/mamba create -p /opt/software/bladderreport_env -y "python>=3.6" \
-    opt/conda/bin/conda create -y "python>=3.6" \
+    opt/conda/bin/conda env create -y \
       r-base \
       r-ranger \
       r-devtools \
