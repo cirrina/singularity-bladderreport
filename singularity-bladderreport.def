@@ -5,7 +5,7 @@ From:nfcore/base
 %environment
     export PATH=$PATH:/opt/software/conda/bin/
     # export PATH=$PATH:/opt/software/conda/bin/
-    # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
+    source /opt/software/conda/bin/activate /opt/software/bladderreport_env
     export LC_ALL=en_US.UTF-8 # export LC_ALL=C.UTF-8 # Sets locale to UTF-8
     export LANG=en_US.UTF-8 # export LANG=C.UTF-8 # Sets locale to UTF-8
 
@@ -39,8 +39,8 @@ From:nfcore/base
     /opt/software/conda/bin/conda config --add channels dranew
     /opt/software/conda/bin/conda install -y -c conda-forge mamba
 
-    # /opt/software/conda/bin/mamba create -p /opt/software/uroscan_env -y "python>=3.6" \
-    /opt/software/conda/bin/mamba create -y "python>=3.6" \
+    /opt/software/conda/bin/mamba create -p /opt/software/bladderreport_env -y "python>=3.6" \
+    #/opt/software/conda/bin/mamba create -y "python>=3.6" \
       r-base \
       r-ranger \
       r-devtools \
@@ -54,6 +54,7 @@ From:nfcore/base
       r-gridextra
 
     # source /opt/software/conda/bin/activate /opt/software/ctg-rnaseq_env
+    # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
     cd /opt/software
 
     apt-get -y clean
