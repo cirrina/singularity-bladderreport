@@ -13,6 +13,7 @@ From:nfcore/base
 
 %files
     ## bladderreport /opt/software/
+    environment.yml /
 
 %post
     # yum -y install epel-release wget which nano curl zlib-devel
