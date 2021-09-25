@@ -1,0 +1,19 @@
+name: rnatools
+channels:
+  - dranew
+  - bioconda
+  - conda-forge
+  - defaults
+  - r
+dependencies:
+    -  r-base
+    -  r-ranger
+    -  r-devtools
+    -  r-knitr
+    -  r-kableextra
+    -  r-jsonlite
+    -  r-dplyr
+    -  r-reshape
+    -  r-ggplot2
+    -  r-cowplot=1.1.0
+    -  r-gridextra

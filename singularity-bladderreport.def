@@ -46,18 +46,18 @@ From:nfcore/base
 
 
     # /opt/software/conda/bin/mamba create -p /opt/software/bladderreport_env -y "python>=3.6" \
-    opt/conda/bin/conda env create -y \
-      r-base \
-      r-ranger \
-      r-devtools \
-      r-knitr \
-      r-kableextra \
-      r-jsonlite \
-      r-dplyr \
-      r-reshape \
-      r-ggplot2 \
-      r-cowplot=1.1.0 \
-      r-gridextra
+    opt/conda/bin/conda env create -y -f /environment.yml
+      # r-base \
+      # r-ranger \
+      # r-devtools \
+      # r-knitr \
+      # r-kableextra \
+      # r-jsonlite \
+      # r-dplyr \
+      # r-reshape \
+      # r-ggplot2 \
+      # r-cowplot=1.1.0 \
+      # r-gridextra
 
     # source /opt/software/conda/bin/activate /opt/software/ctg-rnaseq_env
     # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
