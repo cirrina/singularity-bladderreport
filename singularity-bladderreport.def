@@ -3,9 +3,10 @@ From:nfcore/base
 
 
 %environment
-    export PATH=$PATH:/opt/software/conda/bin/
     # export PATH=$PATH:/opt/software/conda/bin/
-    source /opt/software/conda/bin/activate /opt/software/bladderreport_env
+    PATH=/opt/bin:/usr/local/bin:/opt/conda/envs/rnatools/bin/:$PATH
+    # export PATH=$PATH:/opt/software/conda/bin/
+    # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
     export LC_ALL=en_US.UTF-8 # export LC_ALL=C.UTF-8 # Sets locale to UTF-8
     export LANG=en_US.UTF-8 # export LANG=C.UTF-8 # Sets locale to UTF-8
 
@@ -27,20 +28,25 @@ From:nfcore/base
 
     apt-get -y install locales apt-utils curl libz-dev build-essential gettext cmake libxml2-dev make libcurl4-openssl-dev libssl-dev libbz2-dev libboost-dev libtbb2 sudo tree
 
-    mkdir -p /opt/software
+    # mkdir -p /opt/software
+    # cd /opt/software
+    # curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    # sh ./Miniconda3-latest-Linux-x86_64.sh -p /opt/software/conda -b
 
-    cd /opt/software
-    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-    sh ./Miniconda3-latest-Linux-x86_64.sh -p /opt/software/conda -b
+    #/opt/software/conda/bin/conda config --add channels defaults
+    #/opt/software/conda/bin/conda config --add channels conda-forge
+    #/opt/software/conda/bin/conda config --add channels bioconda
+    #/opt/software/conda/bin/conda config --add channels dranew
+    # /opt/software/conda/bin/conda install -y -c conda-forge mamba
 
-    /opt/software/conda/bin/conda config --add channels defaults
-    /opt/software/conda/bin/conda config --add channels conda-forge
-    /opt/software/conda/bin/conda config --add channels bioconda
-    /opt/software/conda/bin/conda config --add channels dranew
-    /opt/software/conda/bin/conda install -y -c conda-forge mamba
+    /opt/conda/bin/conda config --add channels defaults
+    /opt/conda/bin/conda config --add channels conda-forge
+    /opt/conda/bin/conda config --add channels bioconda
+    /opt/conda/bin/conda config --add channels dranew
 
-    /opt/software/conda/bin/mamba create -p /opt/software/bladderreport_env -y "python>=3.6" \
-    #/opt/software/conda/bin/mamba create -y "python>=3.6" \
+
+    # /opt/software/conda/bin/mamba create -p /opt/software/bladderreport_env -y "python>=3.6" \
+    opt/conda/bin/conda create -y "python>=3.6" \
       r-base \
       r-ranger \
       r-devtools \
@@ -55,14 +61,14 @@ From:nfcore/base
 
     # source /opt/software/conda/bin/activate /opt/software/ctg-rnaseq_env
     # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
-    cd /opt/software
+    # cd /opt/software
 
     apt-get -y clean
     rm -rf /var/lib/apt/lists/*
 
 
 %runscript
-    echo "Welcome to the bladderreport container"
+    #echo "Welcome to the bladderreport container"
     #exec virsorter "$@"
-    exec R --slave -e "sessionInfo()"
-    exec R --slave -e "installed.packages()"
+    #exec R --slave -e "sessionInfo()"
+    #exec R --slave -e "installed.packages()"
