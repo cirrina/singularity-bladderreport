@@ -2,6 +2,8 @@ Bootstrap:docker
 From:nfcore/base
 
 
+## https://gitlab.mbb.univ-montp2.fr/mbb/singularity-local-recipes/blob/master/Singularity.basic-r-3.5.def
+
 %environment
     # export PATH=$PATH:/opt/software/conda/bin/
     PATH=/opt/:/usr/local/bin:/opt/conda/envs/bladderreport/bin/:$PATH

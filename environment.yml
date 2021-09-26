@@ -7,7 +7,12 @@ channels:
   - r
 dependencies:
     -  r-base
-    -  r-utf8 
+    - r-base-dev
+    - libblas3
+    - libblas-dev
+    - liblapack-dev
+    - liblapack3
+    -  r-utf8
     -  r-ranger
     -  r-devtools
     -  r-knitr
