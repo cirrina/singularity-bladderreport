@@ -6,12 +6,11 @@ channels:
   - defaults
   - r
 dependencies:
-    -  r-base
-    - r-base-dev
-    - libblas3
-    - libblas-dev
-    - liblapack-dev
-    - liblapack3
+    - r-base
+    - r-libblas3
+    - r-libblas-dev
+    - r-liblapack-dev
+    - r-liblapack3
     -  r-utf8
     -  r-ranger
     -  r-devtools
