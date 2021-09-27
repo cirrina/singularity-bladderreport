@@ -2,7 +2,6 @@ Bootstrap:docker
 From:nfcore/base
 
 
-## https://gitlab.mbb.univ-montp2.fr/mbb/singularity-local-recipes/blob/master/Singularity.basic-r-3.5.def
 
 %environment
     # export PATH=$PATH:/opt/software/conda/bin/
@@ -12,6 +11,9 @@ From:nfcore/base
     export LANGUAGE en_US:en
     export LC_ALL=en_US.UTF-8 # export LC_ALL=C.UTF-8 # Sets locale to UTF-8
     export LANG=en_US.UTF-8 # export LANG=C.UTF-8 # Sets locale to UTF-8
+
+    export R_HOME=/usr/lib64/R
+    export RHOME=/usr/lib64/R
 
 
 %files
@@ -61,6 +63,15 @@ From:nfcore/base
     # source /opt/software/conda/bin/activate /opt/software/ctg-rnaseq_env
     # source /opt/software/conda/bin/activate /opt/software/bladderreport_env
     # cd /opt/software
+
+
+    ## fixing locales in R
+    ## https://gitlab.mbb.univ-montp2.fr/mbb/singularity-local-recipes/blob/master/Singularity.basic-r-3.5.def
+
+    #echo 'LANG <- Sys.getenv("LANG")' | R --slave
+    #echo 'Sys.setlocale("LC_ALL", LANG)' | R --slave
+
+
 
     apt-get -y clean
     rm -rf /var/lib/apt/lists/*
